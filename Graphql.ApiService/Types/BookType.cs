@@ -11,21 +11,16 @@ public static partial class BookType
 
         descriptor.Field(x => x.Id).ID();
         descriptor.Field(x => x.Title);
-        descriptor.Field(x => x.CreatedBy).ResolveWith<AuthorResolver>(x => x.ResolveAuthor(default!));
-        descriptor.Field(x => x.ModifiedBy).ResolveWith<AuthorResolver>(x => x.ResolveFieldResultAuthor(default!));
     }
-}
 
-public class AuthorResolver
-{
-    public Author ResolveAuthor([Parent] Book book)
+    public static Author CreatedBy([Parent] Book book)
     {
         return new Author(book.CreatedBy, "Author Name");
     }
 
-    public FieldResult<Author> ResolveFieldResultAuthor([Parent] Book book)
+    public static FieldResult<Author> ModifiedBy([Parent] Book book)
     {
         return new Author(book.CreatedBy, "Author Name");
     }
-
 }
+
