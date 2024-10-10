@@ -18,13 +18,14 @@ public static partial class BookType
 
 public class AuthorResolver
 {
+    public Author ResolveAuthor([Parent] Book book)
+    {
+        return new Author(book.CreatedBy, "Author Name");
+    }
+
     public FieldResult<Author> ResolveFieldResultAuthor([Parent] Book book)
     {
         return new Author(book.CreatedBy, "Author Name");
     }
 
-    public Author ResolveAuthor([Parent] Book book)
-    {
-        return new Author(book.CreatedBy, "Author Name");
-    }
 }
