@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddGraphQLServer()
     .AddTypes()
+    .AddQueryConventions()
     .ModifyOptions(options =>
     {
         options.DefaultBindingBehavior = BindingBehavior.Explicit;

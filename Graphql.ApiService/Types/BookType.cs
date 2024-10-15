@@ -2,6 +2,8 @@ using Graphql.ApiService.Contracts;
 
 namespace Graphql.ApiService.Types;
 
+public record ModifiedByUserNotFoundError(string Message);
+
 [ObjectType<Book>]
 public static partial class BookType
 {
@@ -18,9 +20,9 @@ public static partial class BookType
         return new Author(book.CreatedBy, "Author Name");
     }
 
+    [Error<ModifiedByUserNotFoundError>]
     public static FieldResult<Author> ModifiedBy([Parent] Book book)
     {
         return new Author(book.CreatedBy, "Author Name");
     }
 }
-
